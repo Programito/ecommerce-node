@@ -47,6 +47,10 @@ class userDAO {
     count(){
         return User.count().exec();
     }
+
+    updateRole(id,role){
+        return User.findByIdAndUpdate(id,{role},{new:true, useFindAndModify:false}).exec();
+    }
 }
 
 
