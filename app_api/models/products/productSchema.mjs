@@ -2,12 +2,28 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-var productSchema = new Schema({
+const ofertaSchema = new Schema({
+    descuento: Number,
+    createAt: {type: Date, default: Date.now()},
+    expires: {type:Date}
+});
+
+const promocionSchema = new Schema({
+    promocion: String,
+    novedad: {type:Boolean, default: true},
+    createAt: {type: Date, default: Date.now()},
+    expires: {type:Date}
+});
+
+
+const productSchema = new Schema({
     nombre: { type: String, required: [true, 'El nombre es necesario'] },
-    precioUni: { type: Number, required: [true, 'El precio únitario es necesario'] },
+    p: { type: Number, alias: 'precioUnitario',required: [true, 'El precio únitario es necesario'] },
     cantidad: { type: Number, required: [true, 'La cantidad es necesaria'] },
     categoria: { type: Schema.ObjectId, ref: 'Category', required: true },
-    ShoppingCart: [{ type: Schema.ObjectId, ref: 'ShoppingCart' }],
+    promocion: promocionSchema,
+    ofertaSchema: ofertaSchema
+    // ShoppingCart: [{ type: Schema.ObjectId, ref: 'ShoppingCart' }],
 });
 
 

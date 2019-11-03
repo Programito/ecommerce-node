@@ -1,7 +1,19 @@
 
+import productDao from '../../models/products/productDao.mjs';
 
-const findAllProducts = (req, res) =>{
-    res.send("FIND ALL PRODUCTS");
+
+const findAllProduct = async(req, res,next) =>{
+    try {
+        const products = await productDao.list();
+        // if (req.query['count'] == 'true') {
+        //     const user_number = user.length;
+        //     user.push({ user_number });
+        // }
+        res.json(products);
+    } catch(error){
+         next(error);
+    }
+
 }
 
-export default findAllProducts;
+export default findAllProduct;
