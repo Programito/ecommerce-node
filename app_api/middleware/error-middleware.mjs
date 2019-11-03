@@ -11,7 +11,7 @@ export default {
     clientErrorHandler(err,req,res,next){
         
         if(err instanceof HTTPErrors.HttpError)
-            res.status(err.statusCode).send (err.message);
+            res.status(err.statusCode).send(err.message);
         
         next(err);
         

@@ -4,7 +4,7 @@ import HTTPerror from 'http-errors';
 const updateUser = async (req, res, next) =>{
     try {       
         if (!req.body || !req.params.id) {
-            res.sendStatus(400);
+            next(HTTPerror(400,{message:'Error en la entrada de parámetros'}));
         } else {
             const user = await userDao.update(req.params.id,req.body);
             res.json(user);

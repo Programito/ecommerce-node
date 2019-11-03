@@ -4,6 +4,7 @@ import errorMiddleware from './app_api/middleware/error-middleware.mjs';
 
 import users from './app_api/routes/users.mjs';
 import auth from './app_api/routes/auth.mjs';
+import categories from './app_api/routes/categories.mjs';
 import products from './app_api/routes/products.mjs';
 import product from './app_api/routes/product.mjs';
 
@@ -26,6 +27,7 @@ app.use(function(req, res, next) {
 
 app.use('/',auth);
 app.use('/users', users);
+app.use('/categories', categories);
 app.use('/product',product);
 app.use('/products', products);
 

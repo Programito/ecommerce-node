@@ -1,13 +1,15 @@
 import mongo from '../../../mongo/MongoManager.mjs';
 import {Category} from '../model.mjs';
 
+
+
 class categoryDao{
     constructor(){
         mongo.connect();
     }
 
     create(data){
-        const category = new category();
+        const category = new Category();
         Object.assign(category, data);
         return category.save();
     }

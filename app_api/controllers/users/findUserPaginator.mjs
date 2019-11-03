@@ -1,9 +1,10 @@
 import userDao from '../../models/users/userDao.mjs';
+import HTTPerror from 'http-errors';
 
-const findUserPaginator = async(req, res) =>{
+const findUserPaginator = async(req, res,next) =>{
     try {
         if (!req.params.page || !req.params.numElem) {
-            res.sendStatus(400);
+            next(HTTPerror(400,{message:'Se necita el número de página y el número de elementos'}));
         } else {
             const user = await userDao.paginator(parseInt(req.params.page), parseInt(req.params.numElem));
             const user_number = await userDao.count();

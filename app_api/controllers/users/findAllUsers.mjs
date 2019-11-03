@@ -1,6 +1,6 @@
 import userDao from '../../models/users/userDao.mjs';
 
-const findAllUsers = async(req, res) =>{
+const findAllUsers = async(req, res,next) =>{
     try {
         const user = await userDao.list();
         if (req.query['count'] == 'true') {
@@ -9,7 +9,7 @@ const findAllUsers = async(req, res) =>{
         }
         res.json(user);
     } catch(error){
-        throw error;
+      next(error);
     }
 
 }

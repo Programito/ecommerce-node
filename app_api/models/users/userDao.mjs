@@ -2,7 +2,6 @@ import mongo from '../../../mongo/MongoManager.mjs';
 import {User} from '../model.mjs';
 
 
-
 class userDAO {
     constructor(){
         mongo.connect();

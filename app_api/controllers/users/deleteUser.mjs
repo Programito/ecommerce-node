@@ -1,16 +1,17 @@
 import userDao from '../../models/users/userDao.mjs';
+import HTTPerror from 'http-errors';
 
-const deleteUser = async(req, res) =>{
+const deleteUser = async(req, res, next) =>{
     try{
         if (!req.params.id) {
-            res.sendStatus(400);
+            next(HTTPerror(400,{message:'Se necesita el parametro id'}));
         } else {    
             const user = await userDao.remove(req.params.id);
             res.json(user);
         }
 } catch (error){
     
-    throw error;
+   next(error);
 }
 }
 

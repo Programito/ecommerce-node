@@ -1,15 +1,14 @@
-import userDao from '../../models/users/userDao.mjs';
+import categoryDao from '../../models/categories/categoryDao.mjs';
 import HTTPerror from 'http-errors';
 
-const register = async(req, res,next) =>{
-
+const createCategory = async(req, res,next) =>{
     try {
         if (!req.body) {
             next(HTTPerror(400,{message:'Error en los parámetros de entrada'}));
         } else {
-
-            const user = await userDao.create(req.body);
-            res.send(user);
+            console.log(req.body);
+            const category = await categoryDao.create(req.body);
+            res.send(category);
         }
     } catch (err) {
         if(err.name == 'ValidationError') {
@@ -18,9 +17,9 @@ const register = async(req, res,next) =>{
             console.log(err);
             next(HTTPerror(400,{message:'Duplicate validation error'}));          
         } else {
-            next(err)
+            next(error); 
         }
     }
 }
 
-export default register;
+export default createCategory;
