@@ -9,6 +9,9 @@ class productDAO {
 
     create(data){
         let product = new Product();
+        if(data.oferta && data.oferta.descuento){
+            data.precioUnitario = data.precioUnitario - (data.precioUnitario * (data.oferta.descuento/100));
+        }
         Object.assign(product, data);
         return product.save();
     }

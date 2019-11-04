@@ -21,10 +21,18 @@ const productSchema = new Schema({
     p: { type: Number, alias: 'precioUnitario',required: [true, 'El precio únitario es necesario'] },
     cantidad: { type: Number, required: [true, 'La cantidad es necesaria'] },
     categoria: { type: Schema.ObjectId, ref: 'Category', required: true },
+    i: { type: String, alias: 'imagen' },
     promocion: promocionSchema,
-    ofertaSchema: ofertaSchema
+    oferta: ofertaSchema
     // ShoppingCart: [{ type: Schema.ObjectId, ref: 'ShoppingCart' }],
 });
 
 
 export default productSchema;
+
+
+
+
+
+
+
