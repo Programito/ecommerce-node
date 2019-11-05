@@ -27,3 +27,12 @@
     "promocion":{"promocion":"invierno",
                     "expires": "2020-04-09"}
 }
+
+{
+	"nombre": "Genesis RX55 Pro Gaming Keyboard",
+	"precioUnitario": 22.99,
+	"cantidad": 7,
+    "categoria": "5dbeaeea10eb8f2850d0fd12",
+    "imagen": "https://thumb.pccomponentes.com/w-530-530/articles/5/53941/natec-genesis-rx55-pro-gaming-keyboard-1.jpg"
+}
+

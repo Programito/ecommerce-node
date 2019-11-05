@@ -20,12 +20,25 @@ class productDAO {
         return Product.find().exec();
     }
 
+    listAddCategory(){
+        return Product.find().populate('categoria').exec();
+    }
+
+    listProductsByCategory(id){
+            return Product.find()
+                .where('categoria').equals(id)
+                .populate('categoria')
+                .exec();
+    }
+
     listOne(id){
         return Product.findById(id).exec();
     }
 
-
     update(id,data){
+        if(data.oferta && data.oferta.descuento){
+            data.precioUnitario = data.precioUnitario - (data.precioUnitario * (data.oferta.descuento/100));
+        }
         return Product.findByIdAndUpdate(id,data,{new:true, useFindAndModify:false}).exec();
     }
 

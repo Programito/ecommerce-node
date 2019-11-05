@@ -20,11 +20,11 @@ const productSchema = new Schema({
     nombre: { type: String, required: [true, 'El nombre es necesario'] },
     p: { type: Number, alias: 'precioUnitario',required: [true, 'El precio únitario es necesario'] },
     cantidad: { type: Number, required: [true, 'La cantidad es necesaria'] },
-    categoria: { type: Schema.ObjectId, ref: 'Category', required: true },
+    categoria: { type: Schema.ObjectId, ref: 'Categories', required: true },
     i: { type: String, alias: 'imagen' },
     promocion: promocionSchema,
-    oferta: ofertaSchema
-    // ShoppingCart: [{ type: Schema.ObjectId, ref: 'ShoppingCart' }],
+    oferta: ofertaSchema,
+    shoppingCart: [{ type: Schema.ObjectId, ref: 'ShoppingCart' }],
 });
 
 

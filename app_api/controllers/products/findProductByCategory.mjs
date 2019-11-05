@@ -2,9 +2,10 @@
 import productDao from '../../models/products/productDao.mjs';
 
 
-const findAllProduct = async(req, res,next) =>{
+const findProductByCategory = async(req, res,next) =>{
     try {
-        const products = await productDao.listAddCategory();
+        console.log(req.params.id);
+        const products = await productDao.listProductsByCategory(req.params.id);
         // if (req.query['count'] == 'true') {
         //     const user_number = user.length;
         //     user.push({ user_number });
@@ -16,4 +17,4 @@ const findAllProduct = async(req, res,next) =>{
 
 }
 
-export default findAllProduct;
+export default findProductByCategory;
