@@ -1,0 +1,51 @@
+import cartDao from "../../models/shoppingCarts/shoppingCartDao.mjs";
+
+import userDao from "../../models/users/userDao.mjs";
+import productDao from "../../models/products/productDao.mjs";
+
+import HTTPerror from "http-errors";
+
+const addProduct = async (req, res, next) => {
+  try {
+    let user = await userDao.listOne(req.params.id);
+    let shoppingCart;
+    let idCart;
+    // existe el usuario
+    if (user) {
+      // No existe el carro
+      if (!user.ca) {
+        console.log("volvi a entrar");
+        shoppingCart = await cartDao.iniciar(req.params.id);
+        user = await userDao.addCart(user, shoppingCart._id);
+        // res.send({shoppingCart,user});
+      }else{
+          shoppingCart = await cartDao.listOne(user.ca);
+      }
+
+      idCart = user.ca;
+
+      if (req.body && req.body.idProduct && req.body.cantidad) {
+        let product = await productDao.listOne(req.body.idProduct);
+
+        // Hay suficiente stock
+        if (product.cantidad >= req.body.cantidad) {
+          product = await productDao.addCart(
+            product,
+            idCart,
+            req.body.cantidad
+          );
+          shoppingCart = await cartDao.addProduct(
+            shoppingCart,
+            product,
+            req.body.cantidad
+          );
+          res.send(shoppingCart);
+        }
+      }
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+export default addProduct;

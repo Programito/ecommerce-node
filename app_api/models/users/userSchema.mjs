@@ -28,6 +28,9 @@ const userSchema = new Schema({
         type: String,
         default: 'USER_ROLE',
         enum: rolesValidos
+    },
+    ca: {
+        type: Schema.ObjectId, ref: 'ShoppingCart'
     }
     
 });

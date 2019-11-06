@@ -7,6 +7,7 @@ import auth from './app_api/routes/auth.mjs';
 import categories from './app_api/routes/categories.mjs';
 import products from './app_api/routes/products.mjs';
 import product from './app_api/routes/product.mjs';
+import cart from './app_api/routes/shoppingCart.mjs';
 import {verificaTokens} from './app_api/middleware/auth.mjs';
 
 const app = express();
@@ -27,9 +28,10 @@ app.use(function(req, res, next) {
 
 app.use('/',auth);
 app.use('/users', users);
-app.use('/categories', verificaTokens, categories);
+app.use('/categories', categories);
 app.use('/product',product);
 app.use('/products', products);
+app.use('/cart', cart)
 
 app.use(errorMiddleware.logError);
 app.use(errorMiddleware.clientErrorHandler);

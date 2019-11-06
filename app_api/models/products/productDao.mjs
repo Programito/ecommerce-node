@@ -45,6 +45,18 @@ class productDAO {
     remove(id){
         return Product.findByIdAndRemove(id,{useFindAndModify:false}).exec();
     }
+
+    addCart(product, idCart, cantidad){
+        product.cantidad = product.cantidad - cantidad;
+        
+        // no esta el carrito en el producto
+        if(product.shoppingCart.indexOf(idCart) === -1){
+            product.shoppingCart.push(idCart);
+        }
+
+        return product.save();
+       
+    }
 }
 
 

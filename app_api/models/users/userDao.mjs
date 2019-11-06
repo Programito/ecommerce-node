@@ -50,6 +50,11 @@ class userDAO {
     updateRole(id,role){
         return User.findByIdAndUpdate(id,{role},{new:true, useFindAndModify:false}).exec();
     }
+    addCart(user, idCart){
+        user.ca = idCart;
+        console.log(user);
+        return user.save();
+    }
 }
 
 

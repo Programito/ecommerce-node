@@ -6,11 +6,12 @@ const Schema = mongoose.Schema;
 var ProductCart = new Schema({
     product: { type: Schema.ObjectId, ref: 'Product' },
     precio: Number,
-    descuento: Number
+    descuento: Number,
+    cantidad: Number
 })
 
 var ShoppingCart = new Schema({
-    estado: { type: Boolean, default: 'activo', required: [true, 'El estado es obligatorio'] },
+    estado: { type: String, default: 'activo', required: [true, 'El estado es obligatorio'] },
     fecha: { type: Date, default: Date.now },
     total: { type: Number, default: 0, required: [true, 'El total es obligatorio'] },
     expired: { type: Date },
