@@ -1,4 +1,6 @@
 import userDao from '../../models/users/userDao.mjs';
+import HTTPerror from 'http-errors';
+
 
 const findAllUsers = async(req, res,next) =>{
     try {
@@ -8,8 +10,8 @@ const findAllUsers = async(req, res,next) =>{
             user.push({ user_number });
         }
         res.json(user);
-    } catch(error){
-      next(error);
+    } catch(err){
+        next(HTTPerror(err.code, {message:err.message}));
     }
 
 }

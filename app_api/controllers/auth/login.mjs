@@ -27,7 +27,7 @@ const login = async (req, res, next) =>{
             
         }
     } catch (error) {
-        next(error);
+        next(next(HTTPerror(err.code,{message:error.message})));
     }
 }
 

@@ -11,8 +11,8 @@ const findUserPaginator = async(req, res,next) =>{
             user.push({ user_number });
             res.json(user);
         }
-    } catch (error) {
-        throw error;
+    } catch (err) {
+        next(HTTPerror(err.code, {message:err.message}));
     }
 }
 

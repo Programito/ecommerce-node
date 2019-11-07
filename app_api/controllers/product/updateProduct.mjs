@@ -2,7 +2,6 @@
 import productDao from '../../models/products/productDao.mjs';
 import HTTPerror from 'http-errors';
 import {Product} from '../../models/model.mjs';
-// import {User} from '../model.mjs';
 
 const updateProduct = async (req, res, next) => {
     try {

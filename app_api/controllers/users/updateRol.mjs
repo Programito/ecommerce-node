@@ -10,7 +10,7 @@ const updateUserRol = async (req, res, next) =>{
             res.json(user);
         }
     } catch (error) {
-        next(error);
+        next(HTTPerror(error.code, {message:error.message}));
     }
 }
 

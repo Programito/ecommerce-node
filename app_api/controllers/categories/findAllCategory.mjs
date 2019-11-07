@@ -6,8 +6,8 @@ const findAllCategories = async(req, res,next) =>{
         const category = await categoryDao.list();
     
         res.json(category);
-    } catch(error){
-      next(error);
+    } catch(err){
+      next(HTTPerror(err.code, {message:err.message}));
     }
 
 }

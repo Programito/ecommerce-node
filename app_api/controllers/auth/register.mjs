@@ -16,9 +16,9 @@ const register = async(req, res,next) =>{
             next(HTTPerror(400,{message: err.message}));
         } else if (err.name == 'MongoError' && err.code == 11000) {
             console.log(err);
-            next(HTTPerror(400,{message:'Duplicate validation error'}));          
+            next(HTTPerror(400,{message:'Email duplicado'}));          
         } else {
-            next(err)
+            next(HTTPerror(err.code, {message:err.message}));
         }
     }
 }

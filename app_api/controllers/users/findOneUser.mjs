@@ -11,7 +11,7 @@ const findOneUser = async(req, res,next) =>{
         }
     } catch (error) {
 
-       next(error);
+        next(HTTPerror(error.code, {message:error.message}));
     }
 }
 

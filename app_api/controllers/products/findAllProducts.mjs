@@ -1,17 +1,17 @@
 
 import productDao from '../../models/products/productDao.mjs';
-
+import HTTPerror from 'http-errors';
 
 const findAllProduct = async(req, res,next) =>{
     try {
         const products = await productDao.listAddCategory();
-        // if (req.query['count'] == 'true') {
-        //     const user_number = user.length;
-        //     user.push({ user_number });
-        // }
+        if (req.query['count'] == 'true') {
+            const product_number = products.length;
+            res.json({products,product_number});
+        }
         res.json(products);
-    } catch(error){
-         next(error);
+    } catch(err){
+        next(HTTPerror(err.code, {message:err.message}));
     }
 
 }

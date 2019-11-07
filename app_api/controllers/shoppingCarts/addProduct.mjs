@@ -38,11 +38,17 @@ const addProduct = async (req, res, next) => {
             req.body.cantidad
           );
           res.send(shoppingCart);
+        } else{
+          next(HTTPerror(400, {message:"no hay suficiente stock"}));
         }
+      }else{
+        next(HTTPerror(400, {message:"parametros incorrectos"}));
       }
+    }else{
+      next(HTTPerror(400, {message:"id de usuario incorrecto"}));
     }
   } catch (err) {
-    res.send(err);
+    next(HTTPerror(err.code, {message:err.message}));
   }
 };
 

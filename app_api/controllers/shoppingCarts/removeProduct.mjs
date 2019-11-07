@@ -14,10 +14,9 @@ const removeProduct = async (req, res, next) => {
     if (user) {
       // No existe el carro
       if (!user.ca) {
-        console.log("el usuario no tiene");
+        next(HTTPerror(400, {message:"el usuario no tiene carro"}));
       }else{
           shoppingCart = await cartDao.listOne(user.ca);
-          console.log(shoppingCart);
       }
 
       idCart = user.ca;
@@ -33,10 +32,14 @@ const removeProduct = async (req, res, next) => {
         product = await productDao.guardar(product, modificar, shoppingCart._id);
 
         res.send({shoppingCart, product});
+      }else{
+        next(HTTPerror(400, {message:"parametros incorrectos"}));
       }
+    }else{
+      next(HTTPerror(400, {message:"no existe el id de usuario"}));
     }
   } catch (err) {
-    res.send(err);
+    next(HTTPerror(err.code, {message:err.message}));
   }
 };
 

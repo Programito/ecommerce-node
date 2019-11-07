@@ -9,9 +9,9 @@ const deleteUser = async(req, res, next) =>{
             const user = await userDao.remove(req.params.id);
             res.json(user);
         }
-} catch (error){
+} catch (err){
     
-   next(error);
+    next(HTTPerror(err.code, {message:err.message}));
 }
 }
 

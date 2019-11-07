@@ -21,9 +21,11 @@ const findCart = async (req, res, next) =>{
             }else{
                 res.send({});
             }
+        }else{
+            next(HTTPerror(400, {message:"parametros incorrectos"}));
         }
     }catch(err){
-        res.send(err);
+        next(HTTPerror(err, {message:err.message}));
     }
 }
 
