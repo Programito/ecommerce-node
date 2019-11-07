@@ -10,7 +10,12 @@ class shoppingCartDao {
         return ShoppingCart.findById(id).exec();
     }
 
-  
+    listOnePopulate(id){
+        return ShoppingCart.findById(id)
+        .populate({path:"products.product",select:{'nombre':1,'categoria':1,'i':1}})
+        .exec();
+    }
+
     iniciar(idUser){
         let shoppingCart = new ShoppingCart();
         shoppingCart.user= idUser;
@@ -20,7 +25,7 @@ class shoppingCartDao {
 
     addProduct(shoppingCart,product,cantidad){
         let buscar= true;
-        // console.log("shoppingCart: ", shoppingCart);
+        shoppingCart.total = parseFloat(shoppingCart.total) + (parseFloat(product.p) * parseFloat(cantidad)); 
         for(let i=0; i< shoppingCart.products.length && buscar; i++){
             if(shoppingCart.products[i].product.equals(product._id)){
                 shoppingCart.products[i].cantidad = parseFloat(cantidad) + parseFloat(shoppingCart.products[i].cantidad);

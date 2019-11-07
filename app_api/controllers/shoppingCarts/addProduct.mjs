@@ -14,10 +14,8 @@ const addProduct = async (req, res, next) => {
     if (user) {
       // No existe el carro
       if (!user.ca) {
-        console.log("volvi a entrar");
         shoppingCart = await cartDao.iniciar(req.params.id);
         user = await userDao.addCart(user, shoppingCart._id);
-        // res.send({shoppingCart,user});
       }else{
           shoppingCart = await cartDao.listOne(user.ca);
       }

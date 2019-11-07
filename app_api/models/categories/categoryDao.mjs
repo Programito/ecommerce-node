@@ -19,7 +19,11 @@ class categoryDao{
     }
 
     listOne(id){
-        return User.findById(id).exec();
+        return Category.findById(id).exec();
+    }
+
+    listOneCategories(id){
+        return Category.findById(id).select({"categoria": 1, "subcategoria": 1, "_id":0}).exec();
     }
 
 }
