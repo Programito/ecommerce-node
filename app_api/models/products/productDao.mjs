@@ -36,10 +36,14 @@ class productDAO {
     }
 
     update(id,data){
-        if(data.oferta && data.oferta.descuento){
-            data.precioUnitario = data.precioUnitario - (data.precioUnitario * (data.oferta.descuento/100));
+        data._id= id;
+        if(!data.oferta || !data.oferta.descuento){
+            return Product.findByIdAndUpdate(id,data,{new:true, useFindAndModify:false}).exec();
         }
-        return Product.findByIdAndUpdate(id,data,{new:true, useFindAndModify:false}).exec();
+        else {
+            data.precioUnitario = data.precioUnitario - (data.precioUnitario * (data.oferta.descuento/100));
+            return Product.findByIdAndUpdate(id,data,{new:true, useFindAndModify:false}).exec();
+        }
     }
 
     remove(id){

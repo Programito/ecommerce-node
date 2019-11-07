@@ -1,4 +1,5 @@
 import HTTPErrors from 'http-errors';
+import HTTPStatuses from 'statuses';
 
 export default {
 
@@ -11,7 +12,7 @@ export default {
     clientErrorHandler(err,req,res,next){
         
         if(err instanceof HTTPErrors.HttpError)
-            res.status(err.statusCode).send(err.message);
+            res.status(err.statusCode).send ({"error": err.message});
         
         next(err);
         
@@ -24,4 +25,4 @@ export default {
 
           res.status(500).send('se ha producido un error: ',err.type);
       }
-}   
+}    
