@@ -5,6 +5,7 @@ import updateUser from '../controllers/users/updateUser.mjs';
 import deleteUser from '../controllers/users/deleteUser.mjs';
 import updateRol from '../controllers/users/updateRol.mjs';
 import findUserPaginator from '../controllers/users/findUserPaginator.mjs';
+import findRegex from '../controllers/users/findRegex.mjs';
 
 
 const router = Router();
@@ -14,6 +15,8 @@ router.get('/', findAllUsers);
 router.get('/:id', findOneUser);
 
 router.get('/:page/:numElem',findUserPaginator );
+
+router.get('/buscar/regex/:busqueda',findRegex);
 
 router.put('/:id', updateUser);
 

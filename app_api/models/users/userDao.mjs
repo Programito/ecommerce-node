@@ -55,6 +55,11 @@ class userDAO {
         console.log(user);
         return user.save();
     }
+
+    buscarUsuarios(regex){
+        return User.find({},'nombre email').or([{ 'nombre': regex }, { 'email': regex }]).exec();
+    }
+
 }
 
 
