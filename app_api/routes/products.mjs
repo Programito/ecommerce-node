@@ -6,7 +6,7 @@ import findProductByCategory from '../controllers/products/findProductByCategory
 const router = Router();
 
 router.get('/', findAllProducts);
-router.get('/:page', findPaginator);
+router.get('/:page/:elements', findPaginator);
 router.get('/category/:id', findProductByCategory)
 
 export default router;

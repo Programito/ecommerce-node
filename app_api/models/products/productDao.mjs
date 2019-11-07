@@ -79,6 +79,11 @@ class productDAO {
                 .populate('categoria')
                 .exec();
     }
+
+    paginator(page,elements){
+        let pos = page * elements;
+        return Product.find().skip(pos).limit(parseInt(elements)).exec();
+    }
 }
 
 

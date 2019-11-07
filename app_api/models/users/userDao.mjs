@@ -44,7 +44,7 @@ class userDAO {
     }
 
     count(){
-        return User.count().exec();
+        return User.countDocuments().exec();
     }
 
     updateRole(id,role){
