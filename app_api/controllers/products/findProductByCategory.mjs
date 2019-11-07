@@ -1,5 +1,3 @@
-
-
 import productDao from '../../models/products/productDao.mjs';
 import categoryDao from '../../models/categories/categoryDao.mjs';
 

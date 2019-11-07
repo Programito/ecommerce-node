@@ -31,7 +31,8 @@ const userSchema = new Schema({
     },
     ca: {
         type: Schema.ObjectId, ref: 'ShoppingCart'
-    }
+    },
+    img: String 
     
 });
 
