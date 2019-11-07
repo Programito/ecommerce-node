@@ -1,16 +1,17 @@
 import mongoose from 'mongoose';
 import config from '../config.mjs';
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 class MongoManager {
 
-    #config;
     
     constructor(config){
-        this.#config = config;
+        this.config = config;
     }
     getConnectionURL(){
-        return this.#config.MONGODB_URI;
+        return this.config;
     }
 
     isConnected(){
@@ -28,4 +29,4 @@ class MongoManager {
 
 }
 
-export default new MongoManager(config);
+export default new MongoManager(process.env.CONFIG);
