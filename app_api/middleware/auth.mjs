@@ -1,40 +1,86 @@
 import jwt from 'jsonwebtoken';
-import {verifyToken} from '../services/jwtServices.mjs';
+import userDAO from '../models/users/userDao.mjs';
 
-const verificaTokens = (req,res,next) => {
-    console.log("entre");
-    const token = req.body.token;
-    console.log(token);
-    // try{
-        if(!token){
+
+
+const verificaTokens = async (req, res, next) => {
+    try {
+        const token = req.body.token;
+        const payload = await jwt.verify(token, process.env.TOKEN);
+        const user = await userDAO.findByEmail(payload.email);
+        if (!user) {
             return res.status(401).json({
-                ok: false,
                 mensaje: 'Token incorrecto',
-                errors: 'Token incorrecto'
+                errors: 'Token no válido'
             });
         }
-    //     }
-    //     const decoded= verifyToken(token);
-    //     next();
-    // }catch(e){
-    //     return res.status(401).json({
-    //         ok: false,
-    //         mensaje: 'Token incorrecto',
-    //         errors: err
-    //     });
-    // }
-    try {
-        console.log(process.env.TOKEN);
-        var decoded = jwt.verify(token, process.env.TOKEN);
-        next();
-      } catch(err) {
+        else {
+            next();
+        }
+    } catch (err) {
         return res.status(401).json({
-                    ok: false,
-                    mensaje: 'Token incorrecto',
-                    errors: err
-                });
-      }
-    
+            mensaje: 'Token incorrecto',
+            errors: err
+        });
+    }
 }
 
-export {verificaTokens};
+const verificaAdmin = async (req, res, next) => {
+    try {
+        const token = req.body.token;
+        const payload = await jwt.verify(token, process.env.TOKEN);
+        const user = await userDAO.findByEmail(payload.email);
+        if (!user) {
+            return res.status(401).json({
+                mensaje: 'Token incorrecto',
+                errors: 'Token no válido'
+            });
+        } else if(user[0].role != 'ADMIN_ROLE'){
+            return res.status(401).json({
+                mensaje: 'Token incorrecto',
+                errors: 'El rol no es administrador'
+            });
+        }
+        else {
+            next();
+        }
+    } catch (err) {
+        return res.status(401).json({
+            mensaje: 'Token incorrecto',
+            errors: err
+        });
+    }
+}
+
+const verificaUser = async (req, res, next) => {
+    try {
+        const token = req.body.token;
+        const payload = await jwt.verify(token, process.env.TOKEN);
+        const user = await userDAO.findByEmail(payload.email);
+        console.log(user[0].role);
+        if (!user) {
+            return res.status(401).json({
+                mensaje: 'Token incorrecto',
+                errors: 'Token no válido'
+            });
+        } else if(user[0].role != 'ADMIN_ROLE' && (user[0]._id != req.params.id)){
+            return res.status(401).json({
+                mensaje: 'Token incorrecto',
+                errors: 'El Token no tiene autorizacion'
+            });
+        }
+        else {
+            next();
+        }
+    } catch (err) {
+        return res.status(401).json({
+            mensaje: 'Token incorrecto',
+            errors: err
+        });
+    }
+}
+ 
+
+
+export { verificaTokens, verificaAdmin, verificaUser };
+

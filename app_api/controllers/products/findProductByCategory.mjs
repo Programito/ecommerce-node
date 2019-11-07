@@ -1,16 +1,20 @@
 
+
 import productDao from '../../models/products/productDao.mjs';
+import categoryDao from '../../models/categories/categoryDao.mjs';
 
 
 const findProductByCategory = async(req, res,next) =>{
     try {
-        console.log(req.params.id);
-        const products = await productDao.listProductsByCategory(req.params.id);
-        // if (req.query['count'] == 'true') {
-        //     const user_number = user.length;
-        //     user.push({ user_number });
-        // }
-        res.json(products);
+        const category = await categoryDao.listOne(req.params.id);
+        let products = await productDao.listProductsByCategory2();
+        let productCategory= [];
+        for(let i=0; i<products.length; i++){
+            if(products[i].categoria.subcategoria.includes(category.categoria) || products[i].categoria.categoria == category.categoria){
+                productCategory.push(products[i]);
+            }
+        }
+        res.json(productCategory);
     } catch(error){
          next(error);
     }

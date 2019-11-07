@@ -1,15 +1,15 @@
 import jwt from 'jsonwebtoken';
 
 const createToken = (user) => {
+  console.log(user[0].email);
    return jwt.sign({
-        name: user.email, 
-        password: user.password
-      },  process.env.TOKEN, { expiresIn: process.env.TOKEN});
+        "email": user[0].email, 
+   },  process.env.TOKEN, { expiresIn: process.env.EXPIRETOKEN});
 } 
 
-const verifyToken = (token) => {
+const verifyToken = async (token) => {
     try {
-        var decoded = jwt.verify(token, process.env.TOKEN);
+        var decoded = await jwt.verify(token, process.env.TOKEN);
         return decoded;
       } catch(err) {
         return err;

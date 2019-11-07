@@ -69,6 +69,12 @@ class productDAO {
         }
         return product.save();
     }
+
+    listProductsByCategory2(){
+        return Product.find()
+                .populate('categoria')
+                .exec();
+    }
 }
 
 
