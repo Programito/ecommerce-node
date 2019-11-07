@@ -50,6 +50,35 @@ class shoppingCartDao {
         return shoppingCart.save();
     }
 
+    removeProducts(shoppingCart,product,cantidad){
+        let buscar = true;
+        let modificar = false;
+        for(let i=0; i < shoppingCart.products.length && buscar; i++){
+            // console.log(shoppingCart.products[i]);
+            // console.log(idProduct);
+                if(shoppingCart.products[i].product.equals(product._id)){
+                    buscar = false;
+                    if(cantidad>= shoppingCart.products[i].cantidad){
+                        shoppingCart.total = parseFloat(shoppingCart.total) -  (parseFloat(shoppingCart.products[i].cantidad) * parseFloat(shoppingCart.products[i].precio));
+                        product.cantidad = parseFloat(product.cantidad) + parseFloat(shoppingCart.products[i].cantidad);
+                        shoppingCart.products.splice(i,1);
+                        modificar = true;
+                    }
+                    else{
+                        shoppingCart.total = parseFloat(shoppingCart.total) -  (parseFloat(cantidad) * parseFloat(shoppingCart.products[i].precio));
+                        shoppingCart.products[i].cantidad = shoppingCart.products[i].cantidad - cantidad;
+                        product.cantidad = parseFloat(product.cantidad) + parseFloat(cantidad);
+                    }
+                }
+        }
+
+        return {"cart": shoppingCart,"product": product,"modificar": modificar};
+    }
+
+    guardar(shoppingCart){
+        return shoppingCart.save();
+    }
+
 }
 
 export default new shoppingCartDao();

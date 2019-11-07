@@ -57,6 +57,18 @@ class productDAO {
         return product.save();
        
     }
+
+    guardar(product, modificar, idCart){
+        if(modificar){
+            for(let i= 0; i< product.shoppingCart.length && modificar; i++){
+                if(product.shoppingCart[i].equals(idCart)){
+                    product.shoppingCart.splice(i,1);
+                    modificar = false;
+                }
+            }
+        }
+        return product.save();
+    }
 }
 
 
