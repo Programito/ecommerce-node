@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import uniqueValidator from 'mongoose-unique-validator';
+import HTTPerror from 'http-errors';
 
 const Schema = mongoose.Schema;
 
@@ -40,17 +41,26 @@ userSchema.pre('save', function() {
     this.password = bcrypt.hashSync(this.password, 10);
   });
 
-// userSchema.methods.toJSON = function() {
-//     let user = this;
-//     let userObject = user.toObject();
-//     delete userObject.password;
 
-//     return userObject;
-// }
 
-userSchema.plugin(uniqueValidator, {
-    message: 'El {PATH} debe de ser único'
-});
+
+
+userSchema.methods.toJSON = function() {
+    try{
+    let user = this;
+    let userObject = user.toObject();
+    delete userObject.password;
+
+    return userObject;
+    }
+    catch(err){
+        next(HTTPerror(500, {message:"error en convertir json"}));
+    }
+}
+
+// userSchema.plugin(uniqueValidator, {
+//     message: 'El {PATH} debe de ser único'
+// });
 
 
 export default userSchema;

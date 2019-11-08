@@ -1,5 +1,7 @@
 import mongo from '../../../mongo/MongoManager.mjs';
 import {User} from '../model.mjs';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 
 class userDAO {
@@ -31,6 +33,9 @@ class userDAO {
 
     update(id,data){
         delete data.role;
+        if(data.password){
+            data.password = bcrypt.hashSync(data.password, 10);
+        }
         return User.findByIdAndUpdate(id,data,{new:true, useFindAndModify:false}).exec();
     }
 
