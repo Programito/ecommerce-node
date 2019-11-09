@@ -6,22 +6,23 @@ import deleteUser from '../controllers/users/deleteUser.js';
 import updateRol from '../controllers/users/updateRol.js';
 import findUserPaginator from '../controllers/users/findUserPaginator.js';
 import findRegex from '../controllers/users/findRegex.js';
+import {verificaAdmin, verificaUser, verificaTokens} from '../middleware/auth.js';
 
 
 const router = Router();
 
-router.get('/', findAllUsers);
+router.get('/',verificaAdmin, findAllUsers);
 
-router.get('/:id', findOneUser);
+router.get('/:id', verificaUser, findOneUser);
 
-router.get('/:page/:numElem',findUserPaginator );
+router.get('/:page/:numElem', verificaAdmin, findUserPaginator );
 
-router.get('/buscar/regex/:busqueda',findRegex);
+router.get('/buscar/regex/:busqueda', verificaAdmin, findRegex);
 
-router.put('/:id', updateUser);
+router.put('/:id', verificaUser, updateUser);
 
-router.put('/role/:id', updateRol);
+router.put('/role/:id', verificaAdmin, updateRol);
 
-router.delete('/:id', deleteUser);
+router.delete('/:id', verificaUser, deleteUser);
 
 export default router;

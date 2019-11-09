@@ -9,8 +9,15 @@ const updateUser = async (req, res, next) =>{
             const user = await userDao.update(req.params.id,req.body);
             res.json(user);
         }
-    } catch (error) {
-        next(HTTPerror(error.code, {message:error.message}));
+    } catch (err) {
+        if(err.name == 'ValidationError') {
+            next(HTTPerror(400,{message: err.message}));
+        } else if (err.name == 'MongoError' && err.code == 11000) {
+            console.log(err);
+            next(HTTPerror(400,{message:'Email duplicado'}));          
+        } else {
+            next(HTTPerror(err.code, {message:err.message}));
+        }
     }
 }
 

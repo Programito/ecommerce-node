@@ -6,7 +6,7 @@ import enviarFile from '../controllers/upload/enviarFile.js';
 const router = Router();
 
 router.put('/:id', upload);
-router.get('/:img', enviarFile);
+router.get('/:id', enviarFile);
 
 
 export default router;

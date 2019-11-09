@@ -14,7 +14,7 @@ const login = async (req, res, next) =>{
              
                 if(await bcrypt.compare(req.body.password, user[0].password)){
                     let token = createToken(user);
-                    console.log(token);
+                    //console.log(token);
                     res.send({user, token});
                 }else{
                     next(HTTPerror(400,{message:'password incorrecto'}));

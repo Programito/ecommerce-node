@@ -5,7 +5,10 @@ import userDAO from '../models/users/userDao.js';
 
 const verificaTokens = async (req, res, next) => {
     try {
-        const token = req.body.token;
+        let token = req.body.token;
+        if(token == undefined){
+            token= req.query.token;
+        }
         const payload = await jwt.verify(token, process.env.TOKEN);
         const user = await userDAO.findByEmail(payload.email);
         if (!user) {
@@ -27,7 +30,11 @@ const verificaTokens = async (req, res, next) => {
 
 const verificaAdmin = async (req, res, next) => {
     try {
-        const token = req.body.token;
+        let token = req.body.token;
+        if(token == undefined){
+            token= req.query.token;
+        }
+        
         const payload = await jwt.verify(token, process.env.TOKEN);
         const user = await userDAO.findByEmail(payload.email);
         if (!user) {
@@ -54,7 +61,11 @@ const verificaAdmin = async (req, res, next) => {
 
 const verificaUser = async (req, res, next) => {
     try {
-        const token = req.body.token;
+        console.log("token:",  req.query.token);
+        let token = req.body.token;
+        if(token == undefined){
+            token= req.query.token;
+        }
         const payload = await jwt.verify(token, process.env.TOKEN);
         const user = await userDAO.findByEmail(payload.email);
         console.log(user[0].role);

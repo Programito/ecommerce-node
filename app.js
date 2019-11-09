@@ -9,6 +9,7 @@ import products from './app_api/routes/products.js';
 import product from './app_api/routes/product.js';
 import cart from './app_api/routes/shoppingCart.js';
 import upload from './app_api/routes/upload.js';
+import errorRoute from './app_api/routes/errorRoute.js';
 import {verificaTokens} from './app_api/middleware/auth.js';
 
 import fileUpload from 'express-fileupload';
@@ -38,6 +39,7 @@ app.use('/cart', cart)
 
 app.use(fileUpload());
 app.use('/upload', upload);
+app.use('*', errorRoute);
 
 
 app.use(errorMiddleware.logError);
