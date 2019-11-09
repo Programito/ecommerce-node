@@ -7,6 +7,6 @@ const router = Router();
 
 router.get('/', findAllProducts);
 router.get('/:page/:elements', findPaginator);
-router.get('/category/:id', findProductByCategory)
+router.get('/buscar/categories/:id', findProductByCategory)
 
 export default router;

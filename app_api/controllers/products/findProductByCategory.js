@@ -4,8 +4,10 @@ import categoryDao from '../../models/categories/categoryDao.js';
 
 const findProductByCategory = async(req, res,next) =>{
     try {
+        console.log("entre por categoria");
         const category = await categoryDao.listOne(req.params.id);
         let products = await productDao.listProductsByCategory2();
+        console.log("products: ",products);
         let productCategory= [];
         for(let i=0; i<products.length; i++){
             if(products[i].categoria.subcategoria.includes(category.categoria) || products[i].categoria.categoria == category.categoria){

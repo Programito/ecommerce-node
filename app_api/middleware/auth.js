@@ -61,7 +61,6 @@ const verificaAdmin = async (req, res, next) => {
 
 const verificaUser = async (req, res, next) => {
     try {
-        console.log("token:",  req.query.token);
         let token = req.body.token;
         if(token == undefined){
             token= req.query.token;
