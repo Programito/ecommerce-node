@@ -1,6 +1,6 @@
 # Proyecto: Application MEAN Full-stack: Back-End
 
-1. ## Consultas
+## 1. Consultas
 
 - ### Users
 
@@ -52,10 +52,10 @@
 | User | Update Image | El usuario, autenticado, actualiza su imagen de perfil|
 | User | Get Image | El usuario, autenticado, obtieme su imagen de perfil|
 
-2. ## Información de la API
+## 2.Información de la API
 
 - ### Auntentificación
-
+```
 endpoint: Registrar un usuario
 Método: POST
 uri: /register
@@ -68,7 +68,8 @@ body parameters:
         string (required) Example: mypassword
         Una contraseña válida
 Respuestas:
-    
+```
+
 
 
 
