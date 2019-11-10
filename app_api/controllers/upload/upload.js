@@ -20,6 +20,7 @@ const upload = async(req, res,next) =>{
         let extensionesValidas = ['png', 'jpg', 'gif', 'jpeg'];
 
         if (extensionesValidas.indexOf(extensionArchivo) < 0) {
+            console.log("entre");
             next(HTTPerror(400, {message:'Extension no válida,Las exenciones válidas son ' + extensionesValidas.join(', ')})); 
         }
 

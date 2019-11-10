@@ -13,11 +13,9 @@ const enviarFile = async(req, res,next) =>{
         let __dirname = path.resolve();
         
         if(user.img == undefined){
-            console.log("por aki2");
             let noImagePath = path.resolve(`${__dirname}/assets/no-image-icon.png`);
             res.sendFile(noImagePath);
         }else{
-            console.log("por aki");
             let img = user.img;
             let pathImagen = path.resolve(`${__dirname}/uploads/${img}`);
             if (fs.existsSync(pathImagen)) {

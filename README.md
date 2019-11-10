@@ -1165,3 +1165,90 @@ Respuestas:
 
 ```
 
+- ###  2.5.Upload
+
+- Update Image
+
+```
+endpoint: El usuario, autenticado accede a su imagen o el usuario es Administrador.
+Método: PUT
+uri: /upload/:id
+    params :id: id de un usuario
+Body:
+    file(required): file de extensión de imagen
+    token(required): token de administrador o del usuario
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        {
+            "ok": true,
+            "mensaje": "Imagen de usuario actualizada",
+            "usuario": {
+                "role": "USER_ROLE",
+                "_id": "5dc7c1982d93f523b0598abd",
+                "nombre": "test18",
+                "email": "test17@test.com",
+                "__v": 0,
+                "img": "5dc7c1982d93f523b0598abd-579.png"
+            }  
+        }
+
+    400 - Header: Content-Type: application/json
+    Body:{"error": "Extension no válida,Las exenciones válidas son png, jpg, gif, jpeg"}
+    
+    400 - Header: Content-Type: application/json
+    Body:{error": "No hay imagen seleccionada"}
+
+    400 - Header: Content-Type: application/json
+    Body:{error": "Usuario no existe"}
+
+    500 - Header: Content-Type: application/json
+    Body: {"error": "Cast to ObjectId failed for value \"5dc7c103bc82381dc85caf2\" at path \"_id\" for model \"User\""}
+
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+
+
+```
+
+- Get Image 	
+
+```
+endpoint: El usuario, autenticado, obtieme su imagen de perfil
+Método: GET
+uri: /upload/:id
+    params :id: id de un usuario
+Body:
+    token(required): token de administrador o del usuario
+
+Respuestas:
+    
+    200 - Header: Content-Type: image/png
+    Body: La imagen subida
+
+    500-
+    Body:{"error": "Cast to ObjectId failed for value \"5dc502a5977eea2354c1f1d10\" at path \"_id\" for model \"User\""}
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "usuario no existe"}
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+
+
+```
