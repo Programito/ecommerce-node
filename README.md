@@ -311,6 +311,140 @@ Respuestas:
             }
 
 ```
+- Search
+
+```
+endpoint:  El usuario, autenticado como administrador, obtiene una sublista de usuarios que cumplen el regex.
+Método: GET
+uri: /users/buscar/regex/:busqueda
+    :busqueda: letras para buscar en la lista de emails y nombre de usuarios.
+body:
+    token
+    string (required): Token de administrador válido
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        [
+            {
+                "_id": "5dc7b0ba3f4d9b2a2cd5ae12",
+                "nombre": "Juan",
+                "email": "test12@test.com"
+            }
+            .
+            .
+            .
+            {
+                "_id": "5dc7c1982d93f523b0598abd",
+                "nombre": "Juanito",
+                "email": "test28@test.com"
+            }
+        ]
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+
+```
+- Update One
+
+```
+endpoint: El usuario, autenticado, actualiza su usuario
+Método: PUT
+uri: /users/:id
+    :id: id del usuario que cambia el rol
+body:
+    token
+        string (required): Token de administrador válido
+     email
+        string:  Example: email@myemail.com
+        Un email válido
+    password
+        string: Example: mypassword
+        Una contraseña válida
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        {
+            "role": "USER_ROLE",
+            "_id": "5dc7ea0a80b85928984b3186",
+            "nombre": "test23",
+            "email": "test26@test.com",
+            "__v": 0
+        }
+
+    400- Header: Content-Type: application/json
+    Body: {"error": "Validation failed: email: El email necesita mas caracteres"}
+    
+    400- Header: Content-Type: application/json
+    Body:{"error": "Validation failed: email: El email no cumple el formato"}
+
+    400- Header: Content-Type: application/json
+    Body:{"error": "Validation failed: email: El email no cumple el formato"}
+
+    400- Header: Content-Type: application/json
+    Body:{"error": "Validation failed: nombre: El nombre necesita mas caracteres"}
+    
+    400- Header: Content-Type: application/json
+    Body:{"error": "Email duplicado"}
+
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+
+```
+
+- Update Rol
+
+```
+endpoint: El usuario, autenticado como administrador, actualiza el rol de un usuario
+Método: PUT
+uri: /users/role/:id
+    :id: id del usuario que cambia el rol
+body:
+    token
+        string (required): Token de administrador válido
+    role
+        string (required): [ADMIN_ROLE, USER_ROLE]
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        {
+            "role": "ADMIN_ROLE",
+            "_id": "5dc7e60e63e75f2ab8e8f87d",
+            "nombre": "test23",
+            "email": "test23@test.com",
+            "__v": 0
+        }
+
+    400- Header: Content-Type: application/json
+    Body: {"error": "Validation failed: role: ADMIN_ROLEs no es un rol válido"}
+    
+    Body: 401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+```
+
 
 
 
