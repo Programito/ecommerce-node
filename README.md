@@ -55,6 +55,7 @@
 ## 2.Información de la API
 
 - ### Auntentificación
+
 ```
 endpoint: Registrar un usuario
 Método: POST
@@ -68,6 +69,44 @@ body parameters:
         string (required) Example: mypassword
         Una contraseña válida
 Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        {
+            "role": "USER_ROLE",
+            "_id": "5dc7c1982d93f523b0598abd",
+            "nombre": "test18",
+            "email": "test17@test.com",
+            "__v": 0
+        }
+    
+    400 - Header: Content-Type: application/json
+    Body: {"error": "User validation failed: nombre: El nombre es necesario"}
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "User validation failed: nombre: El nombre necesita mas caracteres"}
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "User validation failed: nombre: El nombre necesita mas caracteres"}
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "User validation failed: email: El email es necesario"}
+
+    400 - Header: Content-Type: application/json
+    Body: { "error": "User validation failed: email: El email no cumple el formato" }
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "User validation failed: email: El email necesita mas caracteres"}
+
+    400 - Header: Content-Type: application/json
+    Body: { "error": "Email duplicado"}
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "User validation failed: password: El password es obligatorio"}
+
+    400 - Header: Content-Type: application/json
+    Body : {"error": "User validation failed: password: El password necesita mas caracteres"}
+
 ```
 
 

@@ -14,16 +14,20 @@ let rolesValidos = {
 const userSchema = new Schema({
     nombre: {
         type: String,
-        required: [true, 'El nombre es necesario']
+        required: [true, 'El nombre es necesario'],
+        minlength: [5, 'El nombre necesita mas caracteres']
     },
     email: {
         type: String,
         unique: true,
-        required: [true, 'El email es necesario']
+        required: [true, 'El email es necesario'],
+        minlength: [5, 'El email necesita mas caracteres'],
+        match: [/.+\@.+\..+/, 'El email no cumple el formato']
     },
     password: {
         type: String,
-        required: [true, 'El password es obligatorio']
+        required: [true, 'El password es obligatorio'],
+        minlength: [5, 'El password necesita mas caracteres']
     },
     role: {
         type: String,
