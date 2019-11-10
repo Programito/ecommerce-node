@@ -2,7 +2,7 @@
 
 ## 1. Consultas
 
-### - Users
+- ###  Users
 
 | Entidad | Accion | Descripción
 | :---: | :---: | :--- |
@@ -22,7 +22,6 @@
 | :---: | :---: | :--- |
 | Categoría | List |El usuario accede a una lista completa de categorías |
 | Categoría | Create One | El usuario, autenticado como administrador, crea un producto |
-
 
 
 - ### Productos
@@ -57,7 +56,7 @@
 - ###  2.1.Auntentificación
 
 
--- Register
+- Register
 
 ```
 endpoint: Registrar un usuario
@@ -112,7 +111,7 @@ Respuestas:
 
 ```
 
--- Login
+- Login
 
 ```
 endpoint: Obtener token y usuario
@@ -151,19 +150,22 @@ Respuestas:
 
 ```
 
-- ###  2.1.Usuario
+- ###  2.2.Usuario
 
--- List
+- List
 
 ```
 
 endpoint: Obtener lista de usuarios
 Método: GET
 uri: /users
+query params:
+    count: retorna el número de usuarios si es true
 body parameters:
     token
         string (required): Token de administrador válido
 Respuestas:
+    
     
     200 - Header: Content-Type: application/json
     Body:
@@ -187,6 +189,33 @@ Respuestas:
             "__v": 0
         }
     ]
+
+    ?count=true
+    200 - Header: Content-Type: application/json
+    Body:
+       [
+        {
+            "role": "USER_ROLE",
+            "_id": "5dc2fb270254ed105408a63f",
+            "nombre": "test4",
+            "email": "test4@test.com",
+            "__v": 0,
+            "ca": "5dc30cb2a219f31cb0eeaa02"
+        },
+        .
+        .
+        .
+        {
+            "role": "ADMIN_ROLE",
+            "_id": "5dc40472b1be8323c41819fc",
+            "email": "test8@test.com",
+            "nombre": "test8",
+            "__v": 0
+        },
+          {
+            "user_number": 12
+        }
+    ]
     
     401 - Header: Content-Type: application/json
     Body:   {
@@ -198,7 +227,91 @@ Respuestas:
             }
     
 ```
--- ListOne
+- Paginator
+
+```
+endpoint: Obtener lista de usuarios
+Método: GET
+uri: /users/:page/:elements
+    :page: número de página
+    :elements: número de elementos por página
+body:
+    token
+    string (required): Token de administrador válido
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        [
+            {
+            "role": "USER_ROLE",
+            "_id": "5dc7c0f0bc82381dc85caf21",
+            "nombre": "test",
+            "email": "test15@test.com",
+            "__v": 0
+            },
+            .
+            .
+            .
+            {
+                "role": "USER_ROLE",
+                "_id": "5dc7c1982d93f523b0598abd",
+                "nombre": "test18",
+                "email": "test17@test.com",
+                "__v": 0
+            },
+        {
+            "user_number": 12
+        }
+    ]
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+
+```
+
+- ListOne
+
+```
+endpoint: El usuario, autenticado, obtiene su usuario
+Método: GET
+uri: /users/:id
+    :id: id del usuario
+body:
+    token
+    string (required): Token de administrador válido o el token de su usuario
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+       {
+            "role": "USER_ROLE",
+            "_id": "5dc2fb270254ed105408a63f",
+            "nombre": "test",
+            "email": "test4@test.com",
+            "__v": 0,
+            "ca": "5dc30cb2a219f31cb0eeaa02"
+        }
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+
+```
+
 
 
 
