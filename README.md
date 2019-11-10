@@ -41,7 +41,7 @@
 - ### ShoppingCart
 | Entidad | Accion | Descripción
 | :---: | :---: | :--- |
-| ShoppingCart | List |El usuario, autenticado como administrador, accede a la lista completa de ShoppingCarts |
+| ShoppingCart | List One |El usuario, autenticado, accede a su ShoppingCart |
 | ShoppingCart | Add Product | El usuario, autenticado, añade un producto en stock a su carro de la compra, reduce el stock del producto |
 | ShoppingCart | Remove Product | El usuario, autenticado, elimina un producto a su carro de la compra  y añade de nuevo el producto al stock|
 
@@ -971,6 +971,7 @@ endpoint: El usuario accede a la lista de productos en promocion
 Método: GET
 uri: /product/buscar/promocion/
 
+
 Respuestas:
     
     200 - Header: Content-Type: application/json
@@ -996,3 +997,171 @@ Respuestas:
 ]
 
 ```
+- ###  2.4.ShoppingCart
+
+- List One
+
+```
+endpoint: El usuario, autenticado accede a su ShoppingCart o el usuario es Administrador.
+Método: GET
+uri: /cart/:id
+    params :id: id de un shopping cart
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+    {
+        "estado": "activo",
+        "total": 19.98,
+        "_id": "5dc8315cec2b3a1818bdbe07",
+        "fecha": "2019-11-10T15:48:44.760Z",
+        "products": [
+            {
+                "_id": "5dc8315cec2b3a1818bdbe09",
+                "product": {
+                    "_id": "5dc827b268deaf1f74d82c57",
+                    "nombre": "Tacens Mars Gaming MRM0 Ratón Gaming 4000DPI",
+                    "categoria": "5dbeacc2929b120644888d50",
+                    "i": "d2.jpg"
+                },
+            "precio": 9.99,
+            "cantidad": 2
+        }
+        ],
+        "user": "5dc7c103bc82381dc85caf23",
+        "__v": 1
+    }
+
+    400 - Header: Content-Type: application/json
+    Body:{"error": "EL usuario no tiene ese carrito"}
+
+    500 - Header: Content-Type: application/json
+    Body: {"error": "Cast to ObjectId failed for value \"5dc7c103bc82381dc85caf2\" at path \"_id\" for model \"User\""}
+
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+
+
+```
+
+Add Product
+
+```
+endpoint: El usuario, autenticado, añade un producto en stock a su carro de la compra, reduce el stock del producto 
+Método: PUT
+uri: /cart/:id
+    params :id: id de un usuario
+body:
+    token: string (required): Token de administrador válido o del usuario de :id
+    idProduct: string (required): id del producto para añadir
+    cantidad: number (required): número de productos par añadir
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+    {
+        "estado": "activo",
+        "total": 19.98,
+        "_id": "5dc8315cec2b3a1818bdbe07",
+        "fecha": "2019-11-10T15:48:44.760Z",
+        "products": [
+            {
+                "_id": "5dc8315cec2b3a1818bdbe09",
+                "product": "5dc827b268deaf1f74d82c57",
+                "precio": 9.99,
+                "cantidad": 2
+            }
+        ],
+        "user": "5dc7c103bc82381dc85caf23",
+        "__v": 1
+    }
+
+    400 - Header: Content-Type: application/json
+    Body:{"error": "parametros incorrectos"}
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "id de usuario incorrecto"}
+
+    400- Header: Content-Type: application/json
+    Body: {"error": "id de producto erroneo"}
+
+    400- Header: Content-Type: application/json
+    Body: {"error": "no hay suficiente stock"}
+
+    500 - Header: Content-Type: application/json
+    Body:{"error": "Cast to ObjectId failed for value \"5dc7c103bc82381dc85caf2\" at path \"_id\" for model \"User\""}
+
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+
+```
+- Remove Product
+
+```
+endpoint: El usuario, autenticado, elimina un producto a su carro de la compra  y añade de nuevo el producto al stock|
+Método: DELETE
+uri: /cart/:id
+    params :id: id de un usuario
+body:
+    token: string (required): Token de administrador válido o del usuario de :id
+    idProduct: string (required): id del producto para quitar
+    cantidad: number (required): número de productos par quitar
+
+Respuestas:
+    200 - Header: Content-Type: application/json
+    Body:
+        {
+            "estado": "activo",
+            "total": 9.99,
+            "_id": "5dc8315cec2b3a1818bdbe07",
+            "fecha": "2019-11-10T15:48:44.760Z",
+            "products": [
+                {
+                    "_id": "5dc8315cec2b3a1818bdbe09",
+                    "product": "5dc827b268deaf1f74d82c57",
+                    "precio": 9.99,
+                    "cantidad": 1
+                }
+            ],
+            "user": "5dc7c103bc82381dc85caf23",
+        "__v": 1
+    }
+
+    400 - Header: Content-Type: application/json
+    Body:{"error": "no existe el id de usuario"}
+
+    400 - Header: Content-Type: application/json
+    Body:{"error": "el producto no existe"}
+
+    400 - Header: Content-Type: application/json
+    Body:{"error": "el carrito no existe"}
+
+    400 - Header: Content-Type: application/json
+    Body:{"error": "parametros incorrectos"}
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+
+```
+

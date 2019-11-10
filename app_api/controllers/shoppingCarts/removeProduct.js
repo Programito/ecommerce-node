@@ -23,15 +23,21 @@ const removeProduct = async (req, res, next) => {
 
       if (req.body && req.body.idProduct && req.body.cantidad) {
         let product = await productDao.listOne(req.body.idProduct);
+        if(!product){
+          next(HTTPerror(400, {message:"el producto no existe"}));
+        }
         let modificar;
         let shop = await cartDao.removeProducts(shoppingCart,product,req.body.cantidad);
+        if(!shop){
+          next(HTTPerror(400, {message:"el carrito no existe"}));
+        }
         shoppingCart = shop.cart;
         product = shop.product;
         modificar = shop.modificar;
         shoppingCart = await cartDao.guardar(shoppingCart);
         product = await productDao.guardar(product, modificar, shoppingCart._id);
 
-        res.send({shoppingCart, product});
+        res.send(shoppingCart);
       }else{
         next(HTTPerror(400, {message:"parametros incorrectos"}));
       }

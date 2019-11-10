@@ -24,7 +24,9 @@ const addProduct = async (req, res, next) => {
 
       if (req.body && req.body.idProduct && req.body.cantidad) {
         let product = await productDao.listOne(req.body.idProduct);
-
+        if(!product){
+          next(HTTPerror(400, {message:"id de producto erroneo"}));
+        }
         // Hay suficiente stock
         if (product.cantidad >= req.body.cantidad) {
           product = await productDao.addCart(
