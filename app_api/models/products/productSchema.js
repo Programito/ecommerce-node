@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const ofertaSchema = new Schema({
-    descuento: Number,
+    descuento: {type: Number, min: [1, 'El descuento ha de ser mayor de 0'] },
     createAt: {type: Date, default: Date.now()},
     expires: {type:Date}
 });
@@ -17,8 +17,14 @@ const promocionSchema = new Schema({
 
 
 const productSchema = new Schema({
-    nombre: { type: String, required: [true, 'El nombre es necesario'] },
-    p: { type: Number, alias: 'precioUnitario',required: [true, 'El precio únitario es necesario'] },
+    nombre: { type: String, 
+              unique: true,
+              required: [true, 'El nombre es necesario'],
+              minlength: [5, 'El nombre necesita más caracteres'],
+            },
+    p: { type: Number, alias: 'precioUnitario',
+        required: [true, 'El precio únitario es necesario'],
+        min: [1, 'El precio ha de ser mayor de 0'] },
     cantidad: { type: Number, required: [true, 'La cantidad es necesaria'] },
     categoria: { type: Schema.ObjectId, ref: 'Categories', required: true },
     i: { type: String, alias: 'imagen' },

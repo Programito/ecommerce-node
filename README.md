@@ -21,7 +21,7 @@
 | Entidad | Accion | Descripción
 | :---: | :---: | :--- |
 | Categoría | List |El usuario accede a una lista completa de categorías |
-| Categoría | Create One | El usuario, autenticado como administrador, crea un producto |
+| Categoría | Create One | El usuario, autenticado como administrador, crea una categoría |
 
 
 - ### Productos
@@ -481,7 +481,7 @@ Respuestas:
             }
 ```
 
-- ###  2.2.Categorías
+- ###  2.3.Categorías
 
 - List
 
@@ -520,7 +520,7 @@ Respuestas:
 - Create One
 
 ```
-endpoint: El usuario accede a una lista completa de categorías
+endpoint: El usuario  categorías
 Método: POST
 uri: /categories
 body:
@@ -556,7 +556,76 @@ Respuestas:
                 }
             }
 ```
+- ###  2.3.Productos
 
+- Create one
 
+```
+endpoint: El usuario, autenticado como administrador, crea una categoría 
+Método: POST
+uri: /product
+body:
+    token: string (required): Token de administrador válido
+    nombre: string (required)
+    precioUnitario: number (required)
+    cantidad: number (required) -> Stock del producto
+    categoria: string(required) -> id de la categoría
+    imagen: string
+    promocion:
+        promocion: String,
+        novedad: Boolean,
+        createAt: Date,
+        expires: Date
+    oferta:
+        descuento: Number,
+        createAt: Date,
+        expires: Date
+ 
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+            {
+                "shoppingCart": [],
+                "_id": "5dc7f7a6cc37ec0bf812aa17",
+                "nombre": "Owlotech Black Altavoces 2.1 16W RMS",
+                "p": 21,
+                "cantidad": 10,
+                "categoria": "5dc7f1571de8f22fec0cfe7b",
+                "i": "1.jpg",
+                "__v": 0
+            }
 
+    400 - Header: Content-Type: application/json
+    Body: {"error": "Product validation failed: nombre: El nombre es necesario"}
+
+    400 - Header: Content-Type: application/json
+    Body: { "error": "Product validation failed: nombre: El nombre necesita más caracteres"}
+
+    400 - Header: Content-Type: application/json
+    Body:  {"error": "Product validation failed: p: El precio únitario es necesario"}
+
+    400 - Header: Content-Type: application/json
+    Body:  {"error": "Product validation failed: p: El precio ha de ser mayor de 0"}
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "Product validation failed: cantidad: La cantidad es necesaria"}
+    
+    400 - Header: Content-Type: application/json
+    Body:   {"error": "Product validation failed: categoria: Path `categoria` is required."}
+  
+    400 - Header: Content-Type: application/json
+    Body: {
+            "error": "Product validation failed: oferta.descuento: El descuento ha de ser mayor de 0, oferta: Validation failed:    descuento: El descuento ha de ser mayor de 0"
+          }
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+```
 
