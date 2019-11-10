@@ -9,7 +9,7 @@ const register = async(req, res,next) =>{
         } else {
 
             const user = await userDao.create(req.body);
-            res.send(user);
+            res.json(user);
         }
     } catch (err) {
         if(err.name == 'ValidationError') {
