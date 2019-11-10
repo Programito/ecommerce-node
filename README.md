@@ -1,6 +1,6 @@
 # Proyecto: Application MEAN Full-stack: Back-End
 
-## Consultas
+- ## Consultas
 
 ### Users
 
@@ -44,7 +44,17 @@
 | :---: | :---: | :--- |
 | ShoppingCart | List |El usuario, autenticado como administrador, accede a la lista completa de ShoppingCarts |
 | ShoppingCart | Add Product | El usuario, autenticado, añade un producto en stock a su carro de la compra |
-| ShoppingCart | Remove Product | El usuario, autenticado, elimina un producto a su carro de la compra  y añade el producto al stock|
+| ShoppingCart | Remove Product | El usuario, autenticado, elimina un producto a su carro de la compra  y añade de nuevo el producto al stock|
+
+### Upload
+| Entidad | Accion | Descripción
+| :---: | :---: | :--- |
+| User | Update Image | El usuario, autenticado, actualiza su imagen de perfil|
+| User | Get Image | El usuario, autenticado, obtieme su imagen de perfil|
+
+- ## Información de la API
+
+
 
 
 
