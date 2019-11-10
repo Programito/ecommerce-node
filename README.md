@@ -42,7 +42,7 @@
 | Entidad | Accion | Descripción
 | :---: | :---: | :--- |
 | ShoppingCart | List |El usuario, autenticado como administrador, accede a la lista completa de ShoppingCarts |
-| ShoppingCart | Add Product | El usuario, autenticado, añade un producto en stock a su carro de la compra |
+| ShoppingCart | Add Product | El usuario, autenticado, añade un producto en stock a su carro de la compra, reduce el stock del producto |
 | ShoppingCart | Remove Product | El usuario, autenticado, elimina un producto a su carro de la compra  y añade de nuevo el producto al stock|
 
 - ### Upload
@@ -435,7 +435,7 @@ Respuestas:
     400- Header: Content-Type: application/json
     Body: {"error": "Validation failed: role: ADMIN_ROLEs no es un rol válido"}
     
-    Body: 401 - Header: Content-Type: application/json
+    401 - Header: Content-Type: application/json
     Body:   {
                 "mensaje": "Token incorrecto",
                 "errors": {
@@ -445,11 +445,117 @@ Respuestas:
             }
 ```
 
+- Remove One
 
+```
+endpoint: El usuario, autenticado, elimina su usuario
+Método: DELETE
+uri: /users/:id
+    :id: id del usuario para eliminar
+body:
+    token
+        string (required): Token de administrador válido o el token del usuario para eliminar
 
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        {
+            "role": "USER_ROLE",
+            "_id": "5dc7ea0a80b85928984b3186",
+            "nombre": "test23",
+            "email": "test23@test.com",
+            "__v": 0
+        }
 
+    400- Header: Content-Type: application/json
+    Body: {"error": "Cast to ObjectId failed for value \"sdfdsf\" at path \"_id\" for model \"User\"}
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+```
 
+- ###  2.2.Categorías
 
+- List
+
+```
+endpoint: El usuario accede a una lista completa de categorías
+Método: GET
+uri: /categories
+ 
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+      [
+        {
+            "subcategoria": [
+                "Periféricos"
+            ],
+            "_id": "5dbeacc2929b120644888d50",
+            "categoria": "Mouse",
+            "__v": 0
+        },
+        .
+        .
+        .
+        {
+        "subcategoria": [
+            "Periféricos"
+        ],
+        "_id": "5dbeaeea10eb8f2850d0fd12",
+        "categoria": "Teclado",
+        "__v": 0
+        }
+      ]
+]
+```
+- Create One
+
+```
+endpoint: El usuario accede a una lista completa de categorías
+Método: POST
+uri: /categories
+body:
+    token
+        string (required): Token de administrador válido
+    categoria
+        string (required):  Ejemplo: "Altavoces"
+    subcategoria: Padres de la categoría 
+        [string] : Ejemplo: ["Periféricos"]
+ 
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        {
+            "subcategoria": [
+            "Periféricos"
+            ],
+        "_id": "5dc7f1571de8f22fec0cfe7b",
+        "categoria": "Altavoces",
+        "__v": 0
+        }
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "Categories validation failed: categoria: La categoria es obligatoria"}
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+```
 
 
 
