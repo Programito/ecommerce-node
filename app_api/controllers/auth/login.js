@@ -7,7 +7,7 @@ const login = async (req, res, next) =>{
     try {
         if (!req.body.email || !req.body.password) {
             
-            next(HTTPerror(400,{message:'no introducistes el user o el password'}));
+            next(HTTPerror(400,{message:'no introducistes el usuario o el password'}));
         } else {
             let user = await userDao.findByEmail(req.body.email);
             if(user && user.length>=1){
@@ -17,10 +17,10 @@ const login = async (req, res, next) =>{
                     //console.log(token);
                     res.send({user, token});
                 }else{
-                    next(HTTPerror(400,{message:'password incorrecto'}));
+                    next(HTTPerror(400,{message:'usuario o password incorrectos'}));
                 }
             } else{
-                next(next(HTTPerror(400,{message:'name incorrecto'})));
+                next(next(HTTPerror(400,{message:'Usuario o Password incorrectos'})));
             }
             
            

@@ -2,7 +2,7 @@
 
 ## 1. Consultas
 
-- ### Users
+### - Users
 
 | Entidad | Accion | Descripción
 | :---: | :---: | :--- |
@@ -54,13 +54,19 @@
 
 ## 2.Información de la API
 
-- ### Auntentificación
+### - Auntentificación
+
+
+-Register
 
 ```
 endpoint: Registrar un usuario
 Método: POST
 uri: /register
 body parameters:
+    nombre
+        string (required) Example: name
+        Un nombre válido
     email
         string (required) Example: email@myemail.com
         Un email válido
@@ -106,6 +112,45 @@ Respuestas:
 
     400 - Header: Content-Type: application/json
     Body : {"error": "User validation failed: password: El password necesita mas caracteres"}
+
+```
+
+-Login
+
+```
+endpoint: Obtener token y usuario
+Método: POST
+uri: /login
+body parameters:
+    email
+        string (required) Example: email@myemail.com
+        Un email válido
+
+    password
+        string (required) Example: mypassword
+        Una contraseña válida
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        {
+            "user": [
+                {
+                    "role": "USER_ROLE",
+                    "_id": "5dc7d9b024f638038c0216dc",
+                    "nombre": "test2",
+                    "email": "test2@test.com",
+                "__v": 0
+                }
+            ],
+            "token":        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwiaWF0IjoxNTczMzc4NDkxLCJleHAiOjE1NzM0NjQ4OTF9.eNztaEf6gL6NZwP_plNdg_JiDsLePp8VSU92SFVOsQk"
+        }
+    
+    400 - Header: Content-Type: application/json
+    Body: {"error": "usuario o password incorrectos"}
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "no introducistes el usuario o el password"}
 
 ```
 
