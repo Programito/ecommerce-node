@@ -54,10 +54,10 @@
 
 ## 2.Información de la API
 
-### - Auntentificación
+- ###  2.1.Auntentificación
 
 
--Register
+-- Register
 
 ```
 endpoint: Registrar un usuario
@@ -93,9 +93,6 @@ Respuestas:
     Body: {"error": "User validation failed: nombre: El nombre necesita mas caracteres"}
 
     400 - Header: Content-Type: application/json
-    Body: {"error": "User validation failed: nombre: El nombre necesita mas caracteres"}
-
-    400 - Header: Content-Type: application/json
     Body: {"error": "User validation failed: email: El email es necesario"}
 
     400 - Header: Content-Type: application/json
@@ -115,7 +112,7 @@ Respuestas:
 
 ```
 
--Login
+-- Login
 
 ```
 endpoint: Obtener token y usuario
@@ -154,10 +151,54 @@ Respuestas:
 
 ```
 
+- ###  2.1.Usuario
 
+-- List
 
+```
 
-
+endpoint: Obtener lista de usuarios
+Método: GET
+uri: /users
+body parameters:
+    token
+        string (required): Token de administrador válido
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+       [
+        {
+            "role": "USER_ROLE",
+            "_id": "5dc2fb270254ed105408a63f",
+            "nombre": "test4",
+            "email": "test4@test.com",
+            "__v": 0,
+            "ca": "5dc30cb2a219f31cb0eeaa02"
+        },
+        .
+        .
+        .
+        {
+            "role": "ADMIN_ROLE",
+            "_id": "5dc40472b1be8323c41819fc",
+            "email": "test8@test.com",
+            "nombre": "test8",
+            "__v": 0
+        }
+    ]
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+    
+```
+-- ListOne
 
 
 
