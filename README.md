@@ -629,3 +629,370 @@ Respuestas:
             }
 ```
 
+
+Update
+
+
+```
+endpoint: El usuario, autenticado como administrador, crea una categoría 
+Método: PUT
+uri: /product/:id
+    :id: id del product
+body:
+    token: string (required): Token de administrador válido
+    nombre: string (required)
+    precioUnitario: number (required)
+    cantidad: number (required) -> Stock del producto
+    categoria: string(required) -> id de la categoría
+    imagen: string
+    promocion:
+        promocion: String,
+        novedad: Boolean,
+        createAt: Date,
+        expires: Date
+    oferta:
+        descuento: Number,
+        createAt: Date,
+        expires: Date
+ 
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+            {
+                "shoppingCart": [],
+                "_id": "5dc7f7a6cc37ec0bf812aa17",
+                "nombre": "Owlotech Black Altavoces 2.1 16W RMS",
+                "p": 25,
+                "cantidad": 12,
+                "categoria": "5dc7f1571de8f22fec0cfe7b",
+                "i": "1.jpg",
+                "__v": 0
+            }
+
+    400 - Header: Content-Type: application/json
+    Body: {"error": "Duplicate validation error"}
+    
+    401 - Header: Content-Type: application/json
+    Body:   {
+                "mensaje": "Token incorrecto",
+                "errors": {
+                    "name": "JsonWebTokenError",
+                    "message": "jwt must be provided"
+                }
+            }
+```
+
+ListOne 
+
+```
+endpoint: El usuario accede a un producto
+Método: GET
+uri: /product/:id
+    :id: id del product
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        {
+        "shoppingCart": [],
+        "_id": "5dc7fc205291ad2d9059e214",
+        "nombre": "Tacens Mars Gaming MRM0 Ratón Gaming 4000DPI",
+        "p": 9.99,
+        "cantidad": 9,
+        "categoria": "5dbeacc2929b120644888d50",
+        "i": "d2.jpg",
+        "promocion": {
+            "novedad": true,
+            "createAt": "2019-11-10T12:00:55.320Z",
+            "_id": "5dc7fc205291ad2d9059e215",
+            "promocion": "invierno",
+            "expires": "2020-04-09T00:00:00.000Z"
+        },
+        "__v": 0
+    }   
+    
+    400 - Header: Content-Type: application/json
+    Body: {"error": "Cast to ObjectId failed for value \"5dc7fc205291ad2d9059e21\" at path \"_id\" for model \"Product\""}
+
+```
+
+- Remove One
+
+```
+endpoint:  El usuario, autenticado como administrador, elimina un producto
+Método: DELETE
+uri: /product/:id
+    :id: id del product
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+     {
+        "shoppingCart": [],
+        "_id": "5dc7fbae5eeace0078ce29ca",
+        "nombre": "Tacens Mars Gaming MRM0 Ratón Gaming 4000DPI53",
+        "p": 100,
+        "cantidad": 90,
+        "categoria": "5dbeacc2929b120644888d50",
+        "i": "https:d2.jpg",
+        "promocion": {
+        "novedad": true,
+        "createAt": "2019-11-10T14:58:59.255Z",
+        "_id": "5dc8265268deaf1f74d82c52",
+        promocion:{
+            "promocion": "invierno",
+            "expires": "2020-04-09T00:00:00.000Z"
+         },
+        "__v": 0,
+        "oferta": {
+            "descuento":20
+            "createAt": "2019-11-10T14:57:10.945Z",
+            "_id": "5dc82547c0c0771aa8edc01c"
+        }
+    } 
+
+    500 - Header: Content-Type: application/json
+    Body:{"error": "Cast to ObjectId failed for value \"5dc7fbae5eeace0078ce29c\" at path \"_id\" for model \"Product\""}
+    
+    400 - Header: Content-Type: application/json
+    Body: {"error": "Cast to ObjectId failed for value \"5dc7fc205291ad2d9059e21\" at path \"_id\" for model \"Product\""}
+```
+
+- List
+
+```
+endpoint: El usuario accede a una lista completa de categorías
+Método: GET
+uri: /products
+ 
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+        [
+            {
+                "shoppingCart": [],
+                "_id": "5dc8278c68deaf1f74d82c54",
+                "nombre": "Tempest MS100 Paladin Ratón Gaming 1600DPI",
+                "p": 4.99,
+                "cantidad": 5,
+                "categoria": {
+                "subcategoria": [
+                    "Periféricos"
+                ],
+                "_id": "5dbeacc2929b120644888d50",
+                "categoria": "Mouse",
+                "__v": 0
+                },
+                "i": "hms100-4.jpg",
+                "__v": 0
+            },
+            .
+            .
+            .
+            {
+                "shoppingCart": [],
+                "_id": "5dc8280468deaf1f74d82c59",
+                "nombre": "Owlotech Black Altavoces 2.1 16W RMS",
+                "p": 17.85,
+                "cantidad": 10,
+                "categoria": {
+                "subcategoria": [
+                    "Periféricos"
+                ],
+                "_id": "5dc7f1571de8f22fec0cfe7b",
+                "categoria": "Altavoces",
+                "__v": 0
+            },
+            "i": "1.jpg",
+            "oferta": {
+                "createAt": "2019-11-10T14:58:59.254Z",
+                "_id": "5dc8280468deaf1f74d82c5a",
+                "descuento": 15
+            },
+            "__v": 0
+        }
+    ]
+
+```
+
+- Paginator 
+
+```
+endpoint: El usuario obtiene una sublista de productos 
+Método: GET
+uri: /products//:page/:elements
+    params  
+            :page: número de página
+            :elements: número de elementos por página 
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+ [
+    {
+        "shoppingCart": [],
+        "_id": "5dc827b268deaf1f74d82c57",
+        "nombre": "Tacens Mars Gaming MRM0 Ratón Gaming 4000DPI",
+        "p": 9.99,
+        "cantidad": 9,
+        "categoria": "5dbeacc2929b120644888d50",
+        "i": "d2.jpg",
+        "promocion": {
+            "novedad": true,
+            "createAt": "2019-11-10T14:58:59.255Z",
+            "_id": "5dc827b268deaf1f74d82c58",
+            "promocion": "invierno",
+            "expires": "2020-04-09T00:00:00.000Z"
+        },
+        "__v": 0
+    },
+    .
+    .
+    .
+    {
+        "shoppingCart": [],
+        "_id": "5dc8280468deaf1f74d82c59",
+        "nombre": "Owlotech Black Altavoces 2.1 16W RMS",
+        "p": 17.85,
+        "cantidad": 10,
+        "categoria": "5dc7f1571de8f22fec0cfe7b",
+        "i": "1.jpg",
+        "oferta": {
+            "createAt": "2019-11-10T14:58:59.254Z",
+            "_id": "5dc8280468deaf1f74d82c5a",
+            "descuento": 15
+        },
+        "__v": 0
+    }
+]
+
+```
+
+- CategoryList
+
+
+```
+endpoint: El usuario accede a una lista completa de categorías
+Método: GET
+uri: /products/buscar/categories/:id
+    params :id: id de una categoria
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+    [
+    {
+        "shoppingCart": [],
+        "_id": "5dc8280468deaf1f74d82c59",
+        "nombre": "Owlotech Black Altavoces 2.1 16W RMS",
+        "p": 17.85,
+        "cantidad": 10,
+        "categoria": {
+            "subcategoria": [
+                "Periféricos"
+            ],
+            "_id": "5dc7f1571de8f22fec0cfe7b",
+            "categoria": "Altavoces",
+            "__v": 0
+        },
+        "i": "1.jpg",
+        "oferta": {
+            "createAt": "2019-11-10T14:58:59.254Z",
+            "_id": "5dc8280468deaf1f74d82c5a",
+            "descuento": 15
+        },
+        "__v": 0
+    }
+]
+
+    500 - Header: Content-Type: application/json
+    body:{"error": "Cast to ObjectId failed for value \"5dc7f1571de8f22fec0cfe7\" at path \"_id\" for model \"Categories\"}
+
+```
+- Discount List
+
+```
+endpoint: El usuario accede a la lista de productos en oferta
+Método: GET
+uri: /product/buscar/oferta/
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+  [
+    {
+        "shoppingCart": [],
+        "_id": "5dc827a068deaf1f74d82c55",
+        "nombre": "MSI Clutch GM10 Ratón Gaming 2400 DPI Negro",
+        "p": 14.706,
+        "cantidad": 12,
+        "categoria": "5dbeacc2929b120644888d50",
+        "i": "msi-mm-mouse-gm10-2d1.jpg",
+        "oferta": {
+            "createAt": "2019-11-10T14:58:59.254Z",
+            "_id": "5dc827a068deaf1f74d82c56",
+            "descuento": 10,
+            "expires": "2020-04-09T00:00:00.000Z"
+        },
+        "__v": 0
+    },
+    .
+    .
+    .
+    {
+        "shoppingCart": [],
+        "_id": "5dc8280468deaf1f74d82c59",
+        "nombre": "Owlotech Black Altavoces 2.1 16W RMS",
+        "p": 17.85,
+        "cantidad": 10,
+        "categoria": "5dc7f1571de8f22fec0cfe7b",
+        "i": "1.jpg",
+        "oferta": {
+            "createAt": "2019-11-10T14:58:59.254Z",
+            "_id": "5dc8280468deaf1f74d82c5a",
+            "descuento": 15
+        },
+        "__v": 0
+    }
+]
+
+
+```
+
+- Promotion List
+
+```
+endpoint: El usuario accede a la lista de productos en promocion
+Método: GET
+uri: /product/buscar/promocion/
+
+Respuestas:
+    
+    200 - Header: Content-Type: application/json
+    Body:
+ [
+    {
+        "shoppingCart": [],
+        "_id": "5dc827b268deaf1f74d82c57",
+        "nombre": "Tacens Mars Gaming MRM0 Ratón Gaming 4000DPI",
+        "p": 9.99,
+        "cantidad": 9,
+        "categoria": "5dbeacc2929b120644888d50",
+        "i": "d2.jpg",
+        "promocion": {
+            "novedad": true,
+            "createAt": "2019-11-10T14:58:59.255Z",
+            "_id": "5dc827b268deaf1f74d82c58",
+            "promocion": "invierno",
+            "expires": "2020-04-09T00:00:00.000Z"
+        },
+        "__v": 0
+    }
+]
+
+```

@@ -17,10 +17,10 @@ const promocionSchema = new Schema({
 
 
 const productSchema = new Schema({
-    nombre: { type: String, 
-              unique: true,
-              required: [true, 'El nombre es necesario'],
-              minlength: [5, 'El nombre necesita más caracteres'],
+    nombre: {   type: String, 
+                unique: true,
+                required: [true, 'El nombre es necesario'],
+                minlength: [5, 'El nombre necesita más caracteres'],
             },
     p: { type: Number, alias: 'precioUnitario',
         required: [true, 'El precio únitario es necesario'],

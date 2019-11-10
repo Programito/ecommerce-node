@@ -1,5 +1,6 @@
 import productDao from '../../models/products/productDao.js';
 import categoryDao from '../../models/categories/categoryDao.js';
+import HTTPerror from 'http-errors';
 
 
 const findProductByCategory = async(req, res,next) =>{
@@ -15,9 +16,10 @@ const findProductByCategory = async(req, res,next) =>{
             }
         }
         res.json(productCategory);
-    } catch(error){
-         next(error);
+    } catch(err){
+        next(HTTPerror(err.code, {message:err.message}));
     }
+
 
 }
 

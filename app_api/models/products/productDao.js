@@ -37,6 +37,7 @@ class productDAO {
 
     update(id,data){
         data._id= id;
+        
         if(!data.oferta || !data.oferta.descuento){
             return Product.findByIdAndUpdate(id,data,{new:true, useFindAndModify:false}).exec();
         }
@@ -44,6 +45,8 @@ class productDAO {
             data.precioUnitario = data.precioUnitario - (data.precioUnitario * (data.oferta.descuento/100));
             return Product.findByIdAndUpdate(id,data,{new:true, useFindAndModify:false}).exec();
         }
+
+    
     }
 
     remove(id){
@@ -83,6 +86,20 @@ class productDAO {
     paginator(page,elements){
         let pos = page * elements;
         return Product.find().skip(pos).limit(parseInt(elements)).exec();
+    }
+
+    update2(product1, data){
+        if(product1.oferta && product1.oferta.descuento){
+            product1.precioUnitario = product1.precioUnitario + (product1.precioUnitario * (product1.oferta.descuento/100));
+            if(!data.oferta){
+                product1.oferta={};
+            }
+        }
+        if(data.oferta && data.oferta.descuento){
+            data.precioUnitario = data.precioUnitario - (data.precioUnitario * (data.oferta.descuento/100));
+        }
+        Object.assign(product1, data);
+        return product1.save();
     }
 }
 
