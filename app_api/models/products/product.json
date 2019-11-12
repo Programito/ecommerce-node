@@ -45,4 +45,269 @@
     "imagen": "https://thumb.pccomponentes.com/w-530-530/articles/12/127502/1.jpg"
 }
 
+{
+	"nombre" : "Logitech K400+ Wireless Touch Keyboard Negro",
+	"precioUnitario": 29.99,
+	"cantidad": 50,
+    "categoria": "5dbeaeea10eb8f2850d0fd12",
+    "imagen":"https://thumb.pccomponentes.com/w-530-530/articles/8/85041/1.jpg",
+    "oferta":{"descuento":16,
+    			"expires": "2020-04-09"}
+}
+
+
+{
+	"nombre" : "Krom Kernel Teclado Mecánico Gaming RGB",
+	"precioUnitario": 59.99,
+	"cantidad": 30,
+    "categoria": "5dbeaeea10eb8f2850d0fd12",
+    "imagen":"https://thumb.pccomponentes.com/w-530-530/articles/14/143877/c2.jpg",
+	"promocion":{"promocion":"invierno",
+		"expires": "2020-04-09"}
+}
+
+{
+	"nombre" : "Razer BlackWidow 2019 Teclado Mecánico Gaming Retroiluminado Switch Green",
+	"precioUnitario": 129.99,
+	"cantidad": 15,
+    "categoria": "5dbeaeea10eb8f2850d0fd12",
+    "imagen":"https://thumb.pccomponentes.com/w-530-530/articles/21/214056/c1.jpg",
+    "oferta":{"descuento":25,
+    			"expires": "2020-04-09"}
+}
+
+{
+	"nombre" : "Logitech Wireless Mouse M185 Azul",
+	"precioUnitario": 10.99,
+	"cantidad": 60,
+    "categoria": "5dbeacc2929b120644888d50",
+    "imagen":"https://thumb.pccomponentes.com/w-530-530/articles/7/79644/logitech-wireless-mouse-m185-azul.jpg",
+    "oferta":{"descuento":25,
+    			"expires": "2020-04-09"}
+}
+
+{
+	"nombre" : "Tacens Mars Gaming MRM0 Ratón Gaming 4000DPI",
+	"precioUnitario": 8.99,
+	"cantidad": 30,
+    "categoria": "5dbeacc2929b120644888d50",
+    "imagen":"https://thumb.pccomponentes.com/w-530-530/articles/15/150143/d2.jpg",
+}
+
+{
+	"nombre" : "Logitech Wireless Trackball M570",
+	"precioUnitario": 67.99,
+	"cantidad": 50,
+    "categoria": "5dbeacc2929b120644888d50",
+    "imagen":"https://thumb.pccomponentes.com/w-530-530/articles/4/42601/m570-1.jpg",
+    "oferta":{"descuento":15,
+				"expires": "2020-04-09"},
+	"promocion":{"promocion":"Black Friday",
+					"expires": "2020-04-09"}
+}
+
+{
+	"nombre" : "Tacens Mars Gaming MM116 Ratón Gaming 3200 DPI",
+	"precioUnitario": 7.99,
+	"cantidad": 60,
+    "categoria": "5dbeacc2929b120644888d50",
+    "imagen":"https://thumb.pccomponentes.com/w-530-530/articles/10/105898/1111.jpg",
+}
+
+{
+	"nombre" : "MSI GF75 Thin 9SC-061XES Intel Core i7-9750H/16GB/1TB+512SSD/GTX1650/17.3",
+	"precioUnitario": 1259.99,
+	"cantidad": 60,
+    "categoria": "5dc8dded9dfaeb0017e52708",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/19/192249/7.jpg",
+	"promocion":{"promocion":"Otoño",
+		"expires": "2020-04-09"}
+}
+
+{
+	"nombre" : "HP NoteBook 15-DB0066NS AMD A4-9125/4GB/128GB SSD/15.6",
+	"precioUnitario": 349.99,
+	"cantidad": 30,
+    "categoria": "5dc8dded9dfaeb0017e52708",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/21/211798/1.jpg"
+}
+
+{
+	"nombre" : "HP Pavilion 15-BC500NS Intel Core i5-9300H/8GB/1TB+128GB SSD/GTX 1050/15.6",
+	"precioUnitario": 649.99,
+	"cantidad": 30,
+    "categoria": "5dc8dded9dfaeb0017e52708",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/23/230230/b1.jpg",
+	"promocion":{"promocion":"Black Friday",
+		"expires": "2020-04-09"},
+		"oferta":{"descuento":25,
+			"expires": "2020-04-09"}
+}
+
+{
+	"nombre" : "Asus ZenBook UX430UA-GV595 Intel Core i7-8550U/8GB/256GB SSD/14",
+	"precioUnitario": 649.99,
+	"cantidad": 50,
+    "categoria": "5dc8dded9dfaeb0017e52708",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/22/228403/2.jpg"
+}
+
+{
+	"nombre" : "Lenovo V130-15IKB Intel Celeron 3867U/4GB/1TB/15.6",
+	"precioUnitario": 279.99,
+	"cantidad": 30,
+    "categoria": "5dc8dded9dfaeb0017e52708",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/23/237765/00.jpg"
+}
+
+{
+	"nombre" : "HP Slimline 290-A0005NS AMD A4-9125/4GB/1TB",
+	"precioUnitario": 299.99,
+	"cantidad": 30,
+    "categoria": "5dc8de399dfaeb0017e52709",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/19/195611/2.jpg",
+	"promocion":{"promocion":"Black Friday",
+		"expires": "2020-04-09"},
+		"oferta":{"descuento":25,
+			"expires": "2020-04-09"}
+}
+
+{
+	"nombre" : "HP OMEN 875-0002NS Intel Core i5-8400/8GB/1TB+128GB SSD/GTX1050",
+	"precioUnitario": 799.99,
+	"cantidad": 50,
+    "categoria": "5dc8de399dfaeb0017e52709",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/17/177118/1.jpg",
+		"oferta":{"descuento":8,
+			"expires": "2020-04-09"}
+}
+
+
+{
+	"nombre" : "PcCom Gold Cylon Intel Core i5-9600K/16GB/480GB SSD+1TB/GTX 1660Ti",
+	"precioUnitario": 995.99,
+	"cantidad": 60,
+    "categoria": "5dc8de399dfaeb0017e52709",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/18/186249/0001.jpg"
+}
+
+{
+	"nombre" : "PcCom Gold Intel Core 9600K/16GB/480GB SSD+1TB/GTX1660S",
+	"precioUnitario": 1045.99,
+	"cantidad": 80,
+    "categoria": "5dc8de399dfaeb0017e52709",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/24/244704/dsc-0250-ret.jpg"
+}
+
+{
+	"nombre" : "Canon Impresora Pixma TS205 Negra",
+	"precioUnitario": 35.99,
+	"cantidad": 100,
+    "categoria": "5dc8e2b99dfaeb0017e5271a",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/15/151891/file.jpg"
+}
+
+{
+	"nombre" : "HP LaserJet Pro M254nw Impresora Láser Color Wifi Blanca",
+	"precioUnitario": 168.99,
+	"cantidad": 60,
+    "categoria": "5dc8e2b99dfaeb0017e5271a",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/14/143303/m1.jpg",
+	"promocion":{"promocion":"Otoño",
+		"expires": "2020-04-09"}
+}
+
+{
+	"nombre" : "Epson Workforce WF-2010W Impresora WiFi",
+	"precioUnitario": 52.99,
+	"cantidad": 60,
+    "categoria": "5dc8e2b99dfaeb0017e5271a",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/6/68013/epson-workforce-wf-2010w-wifi.jpg",
+	"promocion":{"promocion":"Otoño",
+		"expires": "2020-04-09"}
+}
+
+{
+	"nombre" : "HP Officejet Pro 6230 ePrint WiFi Reacondicionado",
+	"precioUnitario": 24.99,
+	"cantidad": 100,
+    "categoria": "5dc8e2b99dfaeb0017e5271a",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/9/94737/hp-officejet-pro-6230-eprint-wifi.jpg"
+}
+
+{
+	"nombre" : "Canon PIXMA TS305 Impresora Wifi",
+	"precioUnitario": 44.99,
+	"cantidad": 60,
+    "categoria": "5dc8e2b99dfaeb0017e5271a",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/16/160756/1.jpg"
+}
+
+{
+	"nombre" : "Woxter Big Bass 95 Altavoces 2.0",
+	"precioUnitario": 24.99,
+	"cantidad": 60,
+    "categoria": "5dc7f1571de8f22fec0cfe7b",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/4/46135/1.jpg"
+}
+
+{
+	"nombre" : "NGS Wild Jam Altavoz Portátil 120W Negro",
+	"precioUnitario": 104.99,
+	"cantidad": 50,
+    "categoria": "5dc7f1571de8f22fec0cfe7b",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/18/187449/ngs-altavoz-bluetooth-led-portable-wildjam.jpg",
+	"promocion":{"promocion":"Otoño",
+		"expires": "2020-04-09"}
+}
+
+{
+	"nombre" : "Woxter Big Bass 80 FX Altavoces 2.0 USB",
+	"precioUnitario": 19.99,
+	"cantidad": 50,
+    "categoria": "5dc7f1571de8f22fec0cfe7b",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/22/229642/a5-6.jpg",
+	"oferta":{"descuento":10,
+		"expires": "2020-04-09"}
+}
+
+
+{
+	"nombre" : "Tacens Mars Gaming MS1 Altavoces 2.0",
+	"precioUnitario": 14.99,
+	"cantidad": 60,
+    "categoria": "5dc7f1571de8f22fec0cfe7b",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/7/71194/tacens-mars-gaming-altavoces-ms1.jpg"
+}
+
+
+{
+	"nombre" : "NGS SB150 Altavoces 2.0 4W RMS",
+	"precioUnitario": 8.99,
+	"cantidad": 30,
+    "categoria": "5dc7f1571de8f22fec0cfe7b",
+	"imagen":"https://thumb.pccomponentes.com/w-530-530/articles/11/116743/ngs-altavoces-pc-sb150-2.jpg"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

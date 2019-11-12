@@ -65,6 +65,8 @@ const verificaUser = async (req, res, next) => {
         if(token == undefined){
             token= req.query.token;
         }
+        console.log("req.body:", req.body);
+        console.log("token:", token);
         const payload = await jwt.verify(token, process.env.TOKEN);
         const user = await userDAO.findByEmail(payload.email);
         console.log(user[0].role);

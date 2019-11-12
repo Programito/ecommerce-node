@@ -10,7 +10,7 @@ const findCart = async (req, res, next) =>{
         if(req.params.id){
             const user = await userDao.listOne(req.params.id);
             if(!user || !user.ca){
-                next(HTTPerror(400, {message:"EL usuario no tiene ese carrito"}));
+               res.send({});
             }
             let cart = await cartDao.listOnePopulate(user.ca);
             if(!cart){

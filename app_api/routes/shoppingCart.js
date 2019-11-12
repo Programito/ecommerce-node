@@ -6,7 +6,7 @@ import {verificaAdmin, verificaUser} from '../middleware/auth.js';
 
 const router = Router();
 
-router.get('/:id',verificaAdmin, findCart);
+router.get('/:id',verificaUser, findCart);
 router.put('/:id', verificaUser,  addProduct);
 router.delete('/:id', verificaUser, removeProduct);
 

@@ -22,6 +22,9 @@ const addProduct = async (req, res, next) => {
 
       idCart = user.ca;
 
+      console.log("req.body: ", req.body);
+      console.log("req.body.product: ", req.body.idProduct);
+      console.log("req.body.cantidad: " ,req.body.cantidad);
       if (req.body && req.body.idProduct && req.body.cantidad) {
         let product = await productDao.listOne(req.body.idProduct);
         if(!product){
