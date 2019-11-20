@@ -1,5 +1,3 @@
-# ecommerce-node
-
 # Proyecto: Application MEAN Full-stack: Back-End
 
 ## 1. Consultas
